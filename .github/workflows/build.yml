@@ -24,12 +24,12 @@ jobs:
         run: npm run build
 
       - name: Deploy to Mirahost via SFTP
-  uses: appleboy/scp-action@v0.1.7
-  with:
-    host: ${{ secrets.SFTP_HOST }}
-    username: ${{ secrets.SFTP_USER }}
-    password: ${{ secrets.SFTP_PASSWORD }}
-    port: 22
-    source: "dist/*"
-    target: "psyplay.net/"
-    strip_components: 1
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USER }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: 22
+          source: "dist/*"
+          target: "psyplay.net/"
+          strip_components: 1
