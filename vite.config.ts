@@ -21,10 +21,11 @@ const NAV_PATHS: string[] = [
 ];
 
 export default defineConfig(({ command }) => ({
+  base: "/",
+
   plugins: [
     react(),
 
-    // Sitemap + robots.txt
     Sitemap({
       hostname: HOSTNAME,
       dynamicRoutes: NAV_PATHS,
@@ -33,7 +34,6 @@ export default defineConfig(({ command }) => ({
       robots: [{ userAgent: "*", allow: "/" }],
     }),
 
-    // Опційно: ANALYZE=1 npm run build → dist/stats.html
     process.env.ANALYZE
       ? (visualizer({
           filename: "dist/stats.html",
