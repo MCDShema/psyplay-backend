@@ -1,11 +1,11 @@
-name: Build psyplay backend
+name: Build & Deploy Frontend
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,8 +23,13 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Upload dist artifact
-        uses: actions/upload-artifact@v4
+      - name: Deploy to Mirahost via SFTP
+        uses: appleboy/scp-action@v0.1.7
         with:
-          name: dist
-          path: dist
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USER }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          source: "dist/*"
+          target: "/var/www/psyplay/psyplay.net/"
+          strip_components: 1
+
