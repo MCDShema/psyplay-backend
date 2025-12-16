@@ -2,7 +2,7 @@ name: Build & Deploy Frontend
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build-and-deploy:
@@ -30,6 +30,5 @@ jobs:
           username: ${{ secrets.SFTP_USER }}
           password: ${{ secrets.SFTP_PASSWORD }}
           source: "dist/*"
-          target: "/var/www/psyplay/psyplay.net/"
+          target: "psyplay.net/"
           strip_components: 1
-
